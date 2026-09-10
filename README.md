@@ -10,6 +10,7 @@ Et samlet og responsivt Home Assistant-kort til kæledyrspleje, vandskål, planl
 - Et valgfrit antal måltider, som automatisk fordeles efter den tilgængelige bredde
 - Visuel status for afventende, uddelte og missede måltider
 - Aktivering af måltidsplaner direkte fra kortet
+- En dagsbaseret **Spring over**-knap pr. måltid; planen fortsætter automatisk næste dag
 - Bekræftelse før manuel fodring og nulstilling af beholder
 - GUI-editor til alle entities og måltider
 - Tema-variabler, responsivt layout og reduceret animation ved `prefers-reduced-motion`
@@ -50,9 +51,15 @@ meals:
     enabled: input_boolean.pet_breakfast_enabled
     status: input_select.pet_breakfast_status
     feed_action: script.pet_feed_breakfast
+    skip: input_boolean.pet_breakfast_skip_today
 ```
 
 Status-entityen for et måltid kan bruge værdierne `pending`, `done` og `missed`. Andre værdier vises som almindelig tekst. Kortet forventer, at vand- og fejl-entities er binære sensorer, at procenten ligger mellem 0 og 100, og at fodermode har valgene `schedule` og `manual`.
+
+`skip` skal pege på en `input_boolean`, som den tilknyttede foderautomation
+respekterer og nulstiller ved døgnskifte. Når den er slået til, viser kortet
+måltidet som **Sprunget over · Kun i dag**, udelader det fra dagens tæller og
+giver mulighed for at fortryde indtil dagens plan er passeret.
 
 ## Tema-variabler
 
