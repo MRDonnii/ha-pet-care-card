@@ -1,6 +1,6 @@
 import "./ha-card-list-editor.js";
 
-const VERSION = "0.2.0";
+const VERSION = "0.2.1";
 
 class HAPetCareCard extends HTMLElement {
   constructor() {
